@@ -32,7 +32,7 @@ export function PageHeader({
   breadcrumb,
 }: PageHeaderProps) {
   return (
-    <section className="bg-antracite pb-16 pt-32 sm:pb-20 sm:pt-40">
+    <section className="bg-antracite pt-sotto-header pb-16 sm:pb-20">
       <Container size="wide">
         <Breadcrumb items={breadcrumb} />
 

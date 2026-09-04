@@ -64,7 +64,10 @@ export function Hero() {
       />
 
       {/* 4 — Contenuto */}
-      <Container size="wide" className="relative z-10 pb-20 pt-40 sm:pb-28">
+      {/* `pt-sotto-header-lg` somma l'area riservata al notch all'altezza
+          dell'header fisso: su iPhone quella barra è più alta che su desktop e
+          con il solo `pt-40` l'occhiello finiva mezzo nascosto dietro. */}
+      <Container size="wide" className="relative z-10 pt-sotto-header-lg pb-20 sm:pb-28">
         <div className="max-w-4xl">
           <Reveal y={12}>
             <p className="eyebrow mb-8 flex items-center gap-3 text-ruggine-bright">

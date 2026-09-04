@@ -41,6 +41,16 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+
+    /* L'area attorno al notch e quella dietro la barra gesti NON vengono
+       dipinte dall'header né dalle sezioni: Safari le riempie con lo sfondo
+       dell'elemento RADICE, cioè di <html>. Lasciandolo al colore chiaro del
+       body, sull'iPhone comparivano due bande bianche sopra e sotto.
+       Antracite qui significa che quelle bande diventano parte del sito.
+
+       Vale anche per il rimbalzo dello scroll: trascinando la pagina oltre il
+       bordo non compare più una striscia bianca. */
+    background-color: var(--color-antracite);
   }
 
   /* Chi ha chiesto meno animazioni al sistema operativo non deve subire
@@ -115,5 +125,22 @@
   .h-hero-xs {
     min-height: 80vh;
     min-height: 80svh;
+  }
+
+  /* Spazio in testa alle sezioni che scorrono SOTTO l'header fisso.
+   *
+   * Deve tenere conto di due cose insieme: l'altezza dell'header e l'area
+   * riservata al notch. Su un iPhone la barra di stato aggiunge una
+   * quarantina di pixel, e un padding fisso pensato per il desktop lascia il
+   * primo elemento mezzo nascosto dietro l'header.
+   *
+   * `env(safe-area-inset-top)` vale 0 sui dispositivi senza aree riservate,
+   * quindi su desktop resta esattamente la spaziatura di design. */
+  .pt-sotto-header {
+    padding-top: calc(env(safe-area-inset-top) + 8rem);
+  }
+
+  .pt-sotto-header-lg {
+    padding-top: calc(env(safe-area-inset-top) + 11rem);
   }
 }

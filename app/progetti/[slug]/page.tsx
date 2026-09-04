@@ -116,7 +116,7 @@ export default async function ProgettoPage({ params }: PageProps<'/progetti/[slu
           aria-hidden
         />
 
-        <Container size="wide" className="relative z-10 pb-16 pt-32">
+        <Container size="wide" className="relative z-10 pt-sotto-header pb-16">
           <Breadcrumb
             items={[
               { label: 'Home', href: '/' },

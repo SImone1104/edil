@@ -25,7 +25,7 @@ function Skeleton({ className }: { className: string }) {
 export default function LoadingProgetti() {
   return (
     <>
-      <section className="bg-antracite pb-16 pt-32 sm:pb-20 sm:pt-40">
+      <section className="bg-antracite pt-sotto-header pb-16 sm:pb-20">
         <Container size="wide">
           <div className="h-3 w-40 animate-pulse bg-white/10 motion-reduce:animate-none" />
           <div className="mt-10 h-12 w-full max-w-2xl animate-pulse bg-white/10 motion-reduce:animate-none" />
