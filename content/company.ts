@@ -25,10 +25,14 @@ import type {
  * In produzione, sostituirlo con un fotogramma reale estratto dal video:
  *   ffmpeg -i public/video/cantiere-drone.mp4 -vf "select=eq(n\,0)" -q:v 3 \
  *          public/images/hero-poster.jpg
+ *
+ * Due file per due contesti: 1280x720 su desktop, 640x360 su schermi stretti.
+ * Su un telefono la seconda è indistinguibile dalla prima, ma pesa un quinto.
  */
 export const heroMedia: HeroMedia = {
   kind: 'video',
   src: '/video/cantiere-drone.mp4',
+  srcMobile: '/video/cantiere-drone-mobile.mp4',
   poster: unsplash(
     'photo-1517089152318-42ec560349c0',
     'Veduta dall’alto di un cantiere con mezzi movimento terra al lavoro',

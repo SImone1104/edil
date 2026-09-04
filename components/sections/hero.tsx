@@ -46,7 +46,11 @@ export function Hero() {
 
       {/* 2 — Video drone, montato dal client solo se ha senso */}
       {heroMedia.kind === 'video' && (
-        <HeroVideo src={heroMedia.src} description={heroMedia.description} />
+        <HeroVideo
+          src={heroMedia.src}
+          srcMobile={heroMedia.srcMobile}
+          description={heroMedia.description}
+        />
       )}
 
       {/* 3 — Velatura: doppio gradiente, più denso in basso dove sta il testo */}

@@ -75,6 +75,12 @@ export type HeroMedia =
       readonly kind: 'video';
       /** MP4 / H.264: il formato con la compatibilità più ampia. */
       readonly src: string;
+      /**
+       * Versione leggera servita su schermi stretti.
+       * Non è un vezzo: su rete cellulare la differenza fra 12 MB e 2,4 MB è
+       * fra un hero che parte e uno che l'utente non vede mai.
+       */
+      readonly srcMobile?: string;
       /** Sorgente WebM opzionale, più leggera dove è supportata. */
       readonly srcWebm?: string;
       /**
