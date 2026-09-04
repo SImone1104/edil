@@ -10,7 +10,8 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
+import { createPortal } from 'react-dom';
 
 import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/utils';
@@ -34,6 +35,19 @@ export function MobileNav() {
   const isOpen = openedOnPath === pathname;
 
   const close = (): void => setOpenedOnPath(null);
+
+  /**
+   * Rileva se siamo nel browser, per poter usare createPortal.
+   * `useSyncExternalStore` con una sottoscrizione vuota è il modo pulito di
+   * farlo: restituisce false durante il render sul server e true dopo
+   * l'idratazione, senza il `setState` dentro `useEffect` che provocherebbe un
+   * render a cascata.
+   */
+  const isMounted = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false,
+  );
 
   // Blocca lo scroll della pagina sottostante e gestisce Esc mentre è aperto.
   useEffect(() => {
@@ -67,11 +81,23 @@ export function MobileNav() {
         <Menu className="size-6" strokeWidth={1.5} aria-hidden />
       </button>
 
-      {/* AnimatePresence permette di animare anche l'USCITA di un elemento.
-          Senza, React rimuoverebbe il nodo dal DOM istantaneamente e
-          l'animazione di chiusura non avrebbe il tempo di essere vista. */}
-      <AnimatePresence>
-        {isOpen && (
+      {/* PORTAL — non è un vezzo, risolve un bug preciso.
+          Questo componente vive dentro l'<header>, che quando la pagina è
+          scrollata riceve `backdrop-blur`. Un `backdrop-filter` su un antenato
+          crea un nuovo blocco contenitore per i discendenti `position: fixed`:
+          da quel momento `inset-0` non si riferisce più alla finestra ma alla
+          scatola dell'header, alta una sessantina di pixel. Il pannello finiva
+          schiacciato lì dentro, apparendo trasparente e non cliccabile.
+          Stessa cosa farebbero `filter`, `transform` e `will-change`.
+          Montandolo su document.body il pannello esce da quel contesto.
+
+          AnimatePresence permette di animare anche l'USCITA di un elemento:
+          senza, React rimuoverebbe il nodo dal DOM istantaneamente e
+          l'animazione di chiusura non si vedrebbe. */}
+      {isMounted &&
+        createPortal(
+          <AnimatePresence>
+            {isOpen && (
           <motion.div
             id="mobile-nav-panel"
             role="dialog"
@@ -83,7 +109,18 @@ export function MobileNav() {
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex h-full flex-col px-6 py-6">
+            {/* Con viewport-fit=cover la pagina si estende sotto il notch e
+                sotto la barra gesti: senza questi margini di sicurezza il
+                titolo finirebbe dietro il notch e i recapiti in fondo dietro
+                la barra home dell'iPhone. `max()` tiene comunque un margine
+                minimo sui dispositivi che non hanno aree riservate. */}
+            <div
+              className="flex h-full flex-col px-6"
+              style={{
+                paddingTop: 'max(1.5rem, env(safe-area-inset-top))',
+                paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))',
+              }}
+            >
               <div className="flex items-center justify-between">
                 <span className="font-display text-lg font-semibold tracking-tight text-calce">
                   {siteConfig.name}
@@ -140,8 +177,10 @@ export function MobileNav() {
               </div>
             </div>
           </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
     </>
   );
 }

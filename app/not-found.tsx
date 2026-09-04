@@ -17,7 +17,7 @@ import { siteConfig } from '@/lib/site-config';
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[80vh] items-center bg-antracite py-32">
+    <section className="flex h-hero-xs items-center bg-antracite py-32">
       <Container size="wide">
         <p className="eyebrow flex items-center gap-3 text-ruggine-bright">
           <span className="inline-block h-px w-10 bg-current" aria-hidden />

@@ -5,7 +5,7 @@
 // posto giusto per header, footer e metadati di base.
 // -----------------------------------------------------------------------------
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import { SiteHeader } from '@/components/layout/site-header';
 import { SiteFooter } from '@/components/layout/site-footer';
@@ -36,6 +36,28 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
   },
+};
+
+/**
+ * Configurazione del viewport.
+ *
+ * `viewportFit: 'cover'` aggiunge `viewport-fit=cover` al meta tag: senza,
+ * Safari su iPhone confina la pagina nell'area sicura e lascia due bande
+ * colorate sopra e sotto, ai lati del notch e della barra gesti. Con `cover`
+ * l'hero arriva davvero ai bordi fisici dello schermo.
+ *
+ * Il contrappasso è che da quel momento il contenuto può finire SOTTO il notch:
+ * per questo header e menu mobile usano `env(safe-area-inset-*)` per tenersi a
+ * distanza. Le due cose vanno sempre insieme.
+ *
+ * `themeColor` tinge la barra di stato di Safari dello stesso antracite
+ * dell'header, così la giunzione non si nota.
+ */
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#131619',
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {

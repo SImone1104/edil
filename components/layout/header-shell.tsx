@@ -44,11 +44,23 @@ export function HeaderShell({ children }: HeaderShellProps) {
 
   return (
     <header
+      /* La pagina si estende sotto il notch (viewport-fit=cover in
+         app/layout.tsx): senza questo margine il logo finirebbe nascosto
+         dietro la barra di stato dell'iPhone.
+
+         Il padding superiore è calcolato, non impostato: `calc()` SOMMA
+         l'area riservata alla spaziatura di design. Scriverlo come semplice
+         `paddingTop: env(...)` azzererebbe la spaziatura, perché lo stile
+         inline ha la precedenza sulla classe Tailwind. Su un dispositivo
+         senza notch `env()` vale 0 e resta solo la spaziatura di design. */
+      style={{
+        paddingTop: `calc(env(safe-area-inset-top) + ${isScrolled ? '0.75rem' : '1.5rem'})`,
+      }}
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
         isScrolled
-          ? 'border-b border-white/10 bg-antracite/90 py-3 backdrop-blur-md'
-          : 'border-b border-transparent bg-transparent py-6',
+          ? 'border-b border-white/10 bg-antracite/90 pb-3 backdrop-blur-md'
+          : 'border-b border-transparent bg-transparent pb-6',
       )}
     >
       {children}

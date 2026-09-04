@@ -85,4 +85,35 @@
   .hairline {
     border-color: color-mix(in srgb, var(--color-cemento) 45%, transparent);
   }
+
+  /* Altezze delle testate a tutto schermo.
+   *
+   * Perché non basta `vh`: su iOS Safari `100vh` corrisponde alla finestra con
+   * le barre del browser NASCOSTE. Al primo caricamento le barre sono visibili,
+   * quindi una sezione alta 92vh sfora sotto il bordo e spinge fuori schermo la
+   * parte bassa dell'hero, dove stanno titolo e pulsanti.
+   *
+   * `svh` (small viewport height) misura la finestra con le barre VISIBILI:
+   * è la misura prudente, quella che garantisce che il contenuto ci stia.
+   * La doppia dichiarazione è un fallback: i browser che non conoscono `svh`
+   * ignorano la seconda riga e tengono la prima. */
+  .h-hero {
+    min-height: 92vh;
+    min-height: 92svh;
+  }
+
+  .h-hero-md {
+    min-height: 70vh;
+    min-height: 70svh;
+  }
+
+  .h-hero-sm {
+    min-height: 58vh;
+    min-height: 58svh;
+  }
+
+  .h-hero-xs {
+    min-height: 80vh;
+    min-height: 80svh;
+  }
 }

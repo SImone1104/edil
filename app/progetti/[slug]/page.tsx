@@ -102,7 +102,7 @@ export default async function ProgettoPage({ params }: PageProps<'/progetti/[slu
       />
 
       {/* Testata con la copertina a tutta larghezza */}
-      <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-antracite">
+      <section className="relative flex h-hero-md items-end overflow-hidden bg-antracite">
         <Image
           src={project.cover.src}
           alt={project.cover.alt}

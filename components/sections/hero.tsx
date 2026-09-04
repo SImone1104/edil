@@ -28,7 +28,7 @@ export function Hero() {
   const poster = heroMedia.kind === 'video' ? heroMedia.poster : heroMedia.image;
 
   return (
-    <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-antracite">
+    <section className="relative flex h-hero items-end overflow-hidden bg-antracite">
       {/* 1 — Poster */}
       <Image
         src={poster.src}

@@ -54,7 +54,7 @@ export default async function ServizioPage({ params }: PageProps<'/servizi/[slug
 
   return (
     <>
-      <section className="relative flex min-h-[58vh] items-end overflow-hidden bg-antracite">
+      <section className="relative flex h-hero-sm items-end overflow-hidden bg-antracite">
         <Image
           src={service.image.src}
           alt={service.image.alt}
