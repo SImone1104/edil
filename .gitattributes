@@ -1,0 +1,10 @@
+# Normalizza i fine riga: evita diff spuri fra Windows e Unix
+* text=auto eol=lf
+
+# File binari: mai normalizzare
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.mp4 binary
+*.woff2 binary

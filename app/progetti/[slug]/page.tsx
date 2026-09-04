@@ -26,6 +26,8 @@ import { PhaseTimeline } from '@/components/projects/phase-timeline';
 import { ProjectCard } from '@/components/projects/project-card';
 import { ProjectGallery } from '@/components/projects/project-gallery';
 import { ProjectSpecs } from '@/components/projects/project-specs';
+import { JsonLdScript } from '@/components/seo/json-ld';
+import { buildBreadcrumbJsonLd, buildProjectJsonLd } from '@/lib/seo';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { ButtonLink } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
@@ -88,6 +90,17 @@ export default async function ProgettoPage({ params }: PageProps<'/progetti/[slu
 
   return (
     <>
+      {/* Dati strutturati specifici della scheda: dicono a Google che questa
+          pagina descrive un'opera realizzata, dove e in che anno. */}
+      <JsonLdScript data={buildProjectJsonLd(project)} />
+      <JsonLdScript
+        data={buildBreadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Cantieri', path: '/progetti' },
+          { name: project.title, path: `/progetti/${project.slug}` },
+        ])}
+      />
+
       {/* Testata con la copertina a tutta larghezza */}
       <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-antracite">
         <Image
