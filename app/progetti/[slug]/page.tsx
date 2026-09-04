@@ -170,7 +170,7 @@ export default async function ProgettoPage({ params }: PageProps<'/progetti/[slu
           <div className="grid gap-16 lg:grid-cols-[1.7fr_1fr]">
             <div>
               <Reveal>
-                <p className="eyebrow mb-8 text-cemento">L’intervento</p>
+                <p className="eyebrow mb-8 text-pietra">L’intervento</p>
               </Reveal>
 
               <div className="space-y-6">
@@ -186,7 +186,7 @@ export default async function ProgettoPage({ params }: PageProps<'/progetti/[slu
               {project.techniques.length > 0 && (
                 <Reveal delay={0.1}>
                   <div className="mt-12 border-t border-cemento/40 pt-8">
-                    <p className="eyebrow mb-5 text-cemento">Tecniche e materiali</p>
+                    <p className="eyebrow mb-5 text-pietra">Tecniche e materiali</p>
                     <ul className="flex flex-wrap gap-2">
                       {project.techniques.map((technique) => (
                         <li
@@ -204,23 +204,23 @@ export default async function ProgettoPage({ params }: PageProps<'/progetti/[slu
 
             <aside>
               <Reveal delay={0.08}>
-                <p className="eyebrow mb-6 text-cemento">Scheda tecnica</p>
+                <p className="eyebrow mb-6 text-pietra">Scheda tecnica</p>
                 <ProjectSpecs specs={project.specs} />
 
                 {project.client && (
                   <div className="mt-8">
-                    <p className="eyebrow mb-2 text-cemento">Committente</p>
+                    <p className="eyebrow mb-2 text-pietra">Committente</p>
                     <p className="text-sm text-antracite">{project.client}</p>
                   </div>
                 )}
 
                 {project.credits && project.credits.length > 0 && (
                   <div className="mt-8">
-                    <p className="eyebrow mb-3 text-cemento">Progetto e collaboratori</p>
+                    <p className="eyebrow mb-3 text-pietra">Progetto e collaboratori</p>
                     <ul className="space-y-2.5">
                       {project.credits.map((credit) => (
                         <li key={credit.name} className="text-sm">
-                          <span className="block text-xs text-cemento">
+                          <span className="block text-xs text-pietra">
                             {credit.role}
                           </span>
                           <span className="text-antracite">{credit.name}</span>
@@ -232,7 +232,7 @@ export default async function ProgettoPage({ params }: PageProps<'/progetti/[slu
 
                 {usedServices.length > 0 && (
                   <div className="mt-8 border-t border-cemento/40 pt-8">
-                    <p className="eyebrow mb-3 text-cemento">Servizi impiegati</p>
+                    <p className="eyebrow mb-3 text-pietra">Servizi impiegati</p>
                     <ul className="space-y-2">
                       {usedServices.map((service) => (
                         <li key={service.slug}>

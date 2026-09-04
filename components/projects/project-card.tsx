@@ -78,7 +78,7 @@ export function ProjectCard({ project, featured = false, index }: ProjectCardPro
         </div>
 
         <div className="mt-5">
-          <p className="eyebrow text-cemento">{CATEGORY_LABELS[project.category]}</p>
+          <p className="eyebrow text-pietra">{CATEGORY_LABELS[project.category]}</p>
 
           <h3 className="mt-2.5 flex items-start gap-2 font-display text-xl font-medium tracking-tight text-antracite transition-colors duration-300 group-hover:text-ruggine">
             {project.title}
@@ -93,7 +93,7 @@ export function ProjectCard({ project, featured = false, index }: ProjectCardPro
             {project.summary}
           </p>
 
-          <p className="mt-3 text-xs text-cemento">
+          <p className="mt-3 text-xs text-pietra">
             {formatLocation(project.location)} · {formatYearRange(project)}
           </p>
         </div>

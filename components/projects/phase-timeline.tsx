@@ -47,7 +47,7 @@ export function PhaseTimeline({ phases }: PhaseTimelineProps) {
                 'absolute left-0 top-1 flex size-6 items-center justify-center rounded-full border',
                 phase.completed
                   ? 'border-ruggine bg-ruggine text-calce'
-                  : 'border-cemento bg-calce-warm text-cemento',
+                  : 'border-cemento bg-calce-warm text-pietra',
               )}
               aria-hidden
             >
@@ -59,7 +59,7 @@ export function PhaseTimeline({ phases }: PhaseTimelineProps) {
             </span>
 
             <Reveal delay={index * 0.06} y={14}>
-              <p className="eyebrow text-cemento">{formatPeriod(phase.period)}</p>
+              <p className="eyebrow text-pietra">{formatPeriod(phase.period)}</p>
               <h3 className="mt-2 font-display text-lg font-medium tracking-tight text-antracite">
                 {phase.title}
                 {/* Il testo fra parentesi non è decorativo: senza, lo stato

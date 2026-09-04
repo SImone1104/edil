@@ -111,7 +111,7 @@ export default async function ServizioPage({ params }: PageProps<'/servizi/[slug
             <aside>
               <Reveal delay={0.08}>
                 <div className="border-l border-cemento/50 pl-8">
-                  <p className="eyebrow mb-4 text-cemento">Un solo referente</p>
+                  <p className="eyebrow mb-4 text-pietra">Un solo referente</p>
                   <p className="text-sm leading-relaxed text-ardesia-mid">
                     Ogni commessa ha un responsabile unico che risponde di qualità,
                     tempi e quadro economico. Il primo sopralluogo è gratuito.
@@ -200,7 +200,7 @@ export default async function ServizioPage({ params }: PageProps<'/servizi/[slug
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-lg font-medium tracking-tight text-antracite transition-colors duration-300 hover:text-ruggine">
                     {item.question}
                     <ChevronDown
-                      className="mt-1 size-5 shrink-0 text-cemento transition-transform duration-300 group-open:rotate-180"
+                      className="mt-1 size-5 shrink-0 text-pietra transition-transform duration-300 group-open:rotate-180"
                       strokeWidth={1.5}
                       aria-hidden
                     />

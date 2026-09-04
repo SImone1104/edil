@@ -41,7 +41,7 @@ export function CtaBand() {
                     aria-hidden
                   />
                   <span>
-                    <span className="block text-xs text-cemento">Telefono</span>
+                    <span className="block text-xs text-pietra">Telefono</span>
                     <span className="block font-display text-lg font-medium tracking-tight text-antracite transition-colors group-hover:text-calce">
                       {siteConfig.contacts.phone}
                     </span>
@@ -58,7 +58,7 @@ export function CtaBand() {
                     aria-hidden
                   />
                   <span className="min-w-0">
-                    <span className="block text-xs text-cemento">Email</span>
+                    <span className="block text-xs text-pietra">Email</span>
                     <span className="block break-all font-display text-base font-medium tracking-tight text-antracite transition-colors group-hover:text-calce sm:text-lg">
                       {siteConfig.contacts.email}
                     </span>

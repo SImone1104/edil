@@ -21,6 +21,16 @@
   --color-ardesia-light: #8a939c;
   --color-cemento: #b3aea6;
   --color-cemento-light: #d9d5cf;
+
+  /* Grigio caldo per il testo secondario SU FONDO CHIARO.
+   *
+   * `cemento` nasce come colore per fondi scuri, dove rende 8,2:1 contro
+   * l'antracite. Sul chiaro però scende a 2,1:1, molto sotto il minimo di
+   * 4,5:1 richiesto da WCAG AA: occhielli e metadati delle schede erano di
+   * fatto illeggibili a molte persone. Questo tono è lo stesso colore al 65%,
+   * quindi la famiglia cromatica non cambia, ma rende 4,85:1 sul bianco e
+   * 4,61:1 sul calce caldo. */
+  --color-pietra: #74716c;
   --color-calce: #f4f3f0;
   --color-calce-warm: #faf9f7;
 
@@ -79,6 +89,18 @@
   :focus-visible {
     outline: 2px solid var(--color-ruggine);
     outline-offset: 3px;
+  }
+
+  /* Tailwind v4 ha cambiato la preflight: i <button> ricevono
+     `cursor: default`, non più `pointer` come in v3. Il risultato è che
+     pulsanti perfettamente cliccabili — menu, miniature della galleria,
+     controlli dell'ingranditore — mostrano la freccia e non sembrano
+     interattivi. Qui ripristiniamo il comportamento atteso, escludendo gli
+     elementi disabilitati, per cui la freccia è invece corretta. */
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  summary {
+    cursor: pointer;
   }
 }
 

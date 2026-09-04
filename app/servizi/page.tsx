@@ -65,7 +65,7 @@ export default function ServiziPage() {
                   <div>
                     <div className="flex items-center gap-4">
                       <Icon name={service.icon} className="size-7 text-ruggine" />
-                      <span className="eyebrow text-cemento">
+                      <span className="eyebrow text-pietra">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>

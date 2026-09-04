@@ -60,7 +60,7 @@ export function ProjectFilters({ filters, resultCount }: ProjectFiltersProps) {
         {/* `min-w-0` permette a questa colonna di restringersi: senza, la fila
             di pastiglie che scorre in orizzontale allargherebbe la pagina. */}
         <div className="min-w-0 max-w-full">
-          <p className="eyebrow mb-4 text-cemento">Tipo di intervento</p>
+          <p className="eyebrow mb-4 text-pietra">Tipo di intervento</p>
           {/* Su mobile le pastiglie scorrono in orizzontale invece di
               impilarsi: nove filtri incolonnati spingerebbero i risultati
               fuori dalla prima schermata. Da sm in su tornano ad andare a capo.
@@ -94,7 +94,7 @@ export function ProjectFilters({ filters, resultCount }: ProjectFiltersProps) {
         </div>
 
         <div className="min-w-0 max-w-full">
-          <p className="eyebrow mb-4 text-cemento">Stato</p>
+          <p className="eyebrow mb-4 text-pietra">Stato</p>
           <div className="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
             <Link
               href={buildFilterHref(filters, { status: null })}

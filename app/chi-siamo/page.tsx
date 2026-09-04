@@ -56,7 +56,7 @@ export default function ChiSiamoPage() {
 
             <div>
               <Reveal>
-                <p className="eyebrow mb-8 text-cemento">Dal 1978</p>
+                <p className="eyebrow mb-8 text-pietra">Dal 1978</p>
               </Reveal>
 
               <div className="space-y-6">
@@ -105,7 +105,7 @@ export default function ChiSiamoPage() {
                       className="flex aspect-[4/5] w-full items-center justify-center border border-cemento/50 bg-white"
                       aria-hidden
                     >
-                      <span className="font-display text-4xl font-light text-cemento">
+                      <span className="font-display text-4xl font-light text-pietra">
                         {member.name
                           .split(' ')
                           .map((part) => part.charAt(0))
@@ -155,7 +155,7 @@ export default function ChiSiamoPage() {
                     <p className="mt-1 text-sm text-ardesia-mid">
                       {certification.title}
                     </p>
-                    <p className="mt-3 text-xs text-cemento">
+                    <p className="mt-3 text-xs text-pietra">
                       {certification.issuer} · rilasciata nel {certification.issuedAt}
                       {certification.expiresAt !== undefined &&
                         `, valida fino al ${certification.expiresAt}`}

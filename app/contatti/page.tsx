@@ -73,7 +73,7 @@ export default function ContattiPage() {
                 orizzontale. È la causa più frequente di overflow su mobile. */}
             <div className="min-w-0">
               <Reveal>
-                <p className="eyebrow mb-8 text-cemento">Recapiti diretti</p>
+                <p className="eyebrow mb-8 text-pietra">Recapiti diretti</p>
               </Reveal>
 
               <div className="space-y-4">
@@ -88,7 +88,7 @@ export default function ContattiPage() {
                       aria-hidden
                     />
                     <span>
-                      <span className="block text-xs text-cemento">Telefono</span>
+                      <span className="block text-xs text-pietra">Telefono</span>
                       <span className="block font-display text-xl font-medium tracking-tight text-antracite transition-colors group-hover:text-calce">
                         {contacts.phone}
                       </span>
@@ -107,7 +107,7 @@ export default function ContattiPage() {
                       aria-hidden
                     />
                     <span className="min-w-0">
-                      <span className="block text-xs text-cemento">Email</span>
+                      <span className="block text-xs text-pietra">Email</span>
                       {/* `break-all` invece di `truncate`: un indirizzo email
                           troncato con i puntini è inutile: meglio mandarlo a
                           capo, anche a costo di spezzarlo. */}
@@ -123,12 +123,12 @@ export default function ContattiPage() {
                 <div className="mt-10 space-y-6 border-t border-cemento/40 pt-8">
                   <div className="flex items-start gap-4">
                     <MapPin
-                      className="mt-0.5 size-5 shrink-0 text-cemento"
+                      className="mt-0.5 size-5 shrink-0 text-pietra"
                       strokeWidth={1.5}
                       aria-hidden
                     />
                     <div>
-                      <p className="text-xs uppercase tracking-wider text-cemento">
+                      <p className="text-xs uppercase tracking-wider text-pietra">
                         Sede operativa
                       </p>
                       <address className="mt-2 text-sm not-italic leading-relaxed text-ardesia">
@@ -154,12 +154,12 @@ export default function ContattiPage() {
 
                   <div className="flex items-start gap-4">
                     <Clock
-                      className="mt-0.5 size-5 shrink-0 text-cemento"
+                      className="mt-0.5 size-5 shrink-0 text-pietra"
                       strokeWidth={1.5}
                       aria-hidden
                     />
                     <div>
-                      <p className="text-xs uppercase tracking-wider text-cemento">
+                      <p className="text-xs uppercase tracking-wider text-pietra">
                         Orari
                       </p>
                       <p className="mt-2 text-sm text-ardesia">{contacts.openingHours}</p>
@@ -169,7 +169,7 @@ export default function ContattiPage() {
               </Reveal>
 
               <Reveal delay={0.2}>
-                <div className="mt-10 border-t border-cemento/40 pt-8 text-xs leading-relaxed text-cemento">
+                <div className="mt-10 border-t border-cemento/40 pt-8 text-xs leading-relaxed text-pietra">
                   <p>{siteConfig.legalName}</p>
                   <p className="mt-1">
                     {legal.vat} · {legal.ren}
@@ -182,7 +182,7 @@ export default function ContattiPage() {
             {/* Cosa succede dopo */}
             <div className="min-w-0">
               <Reveal delay={0.08}>
-                <p className="eyebrow mb-8 text-cemento">Come procediamo</p>
+                <p className="eyebrow mb-8 text-pietra">Come procediamo</p>
               </Reveal>
 
               <ol className="space-y-10">

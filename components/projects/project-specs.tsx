@@ -23,7 +23,7 @@ export function ProjectSpecs({ specs }: ProjectSpecsProps) {
           <dt className="text-sm text-ardesia-mid">{spec.label}</dt>
           <dd className="text-right text-sm font-medium text-antracite">
             {spec.value}
-            {spec.unit && <span className="ml-1 text-cemento">{spec.unit}</span>}
+            {spec.unit && <span className="ml-1 text-pietra">{spec.unit}</span>}
           </dd>
         </div>
       ))}

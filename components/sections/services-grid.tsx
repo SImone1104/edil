@@ -45,7 +45,7 @@ export function ServicesGrid() {
                   {service.tagline}
                 </p>
 
-                <span className="mt-7 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-cemento transition-colors duration-300 group-hover:text-ruggine">
+                <span className="mt-7 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-pietra transition-colors duration-300 group-hover:text-ruggine">
                   Approfondisci
                   <ArrowRight
                     className="size-3.5 transition-transform duration-300 group-hover:translate-x-1"
