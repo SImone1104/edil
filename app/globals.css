@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* -----------------------------------------------------------------------------
+ * Design token.
+ *
+ * In Tailwind v4 i token si dichiarano qui dentro `@theme`, non più in
+ * tailwind.config.ts: ogni variabile genera automaticamente le utility
+ * corrispondenti. `--color-ruggine` produce `bg-ruggine`, `text-ruggine`,
+ * `border-ruggine`. È l'unico posto da toccare per cambiare la palette.
+ *
+ * Palette: cemento / ardesia / antracite, con un solo accento tecnico color
+ * ruggine usato con parsimonia (CTA, numerazioni, dettagli di stato).
+ * -------------------------------------------------------------------------- */
+
+@theme {
+  /* Neutri, dal più scuro al più chiaro ---------------------------------- */
+  --color-antracite: #131619;
+  --color-antracite-soft: #1c2025;
+  --color-ardesia: #343b42;
+  --color-ardesia-mid: #5b646d;
+  --color-ardesia-light: #8a939c;
+  --color-cemento: #b3aea6;
+  --color-cemento-light: #d9d5cf;
+  --color-calce: #f4f3f0;
+  --color-calce-warm: #faf9f7;
+
+  /* Accento tecnico ------------------------------------------------------ */
+  --color-ruggine: #a94e2b;
+  --color-ruggine-bright: #c9603a;
+
+  /* Tipografia ----------------------------------------------------------- */
+  --font-display: var(--font-display), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-body), system-ui, -apple-system, sans-serif;
+
+  /* Curva di easing usata da tutte le transizioni CSS.
+     La stessa curva è replicata in Framer Motion, così le animazioni JS e
+     quelle CSS hanno lo stesso "carattere". */
+  --ease-tecnica: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Chi ha chiesto meno animazioni al sistema operativo non deve subire
+     nemmeno lo scroll animato. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-calce-warm);
+    color: var(--color-antracite);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-antracite);
+    color: var(--color-calce);
+  }
+
+  /* Focus visibile e coerente su tutti gli elementi interattivi:
+     requisito di accessibilità, non un dettaglio estetico. */
+  :focus-visible {
+    outline: 2px solid var(--color-ruggine);
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Occhiello: piccola etichetta maiuscola spaziata, ricorrente nel sito. */
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* Linea sottile di separazione, del colore del cemento. */
+  .hairline {
+    border-color: color-mix(in srgb, var(--color-cemento) 45%, transparent);
+  }
 }
