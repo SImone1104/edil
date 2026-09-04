@@ -105,8 +105,8 @@ export const projects = [
         'gallery',
       ),
       unsplash(
-        'photo-1523413651479-597eb2da0ad6',
-        'Dettaglio ravvicinato della muratura dopo la stuccatura delle lacune',
+        'photo-1487958449943-2429e8be8625',
+        'Dettaglio delle cornici e della partitura di facciata dopo il restauro',
         'gallery',
       ),
       unsplash(
@@ -556,8 +556,8 @@ export const projects = [
         'gallery',
       ),
       unsplash(
-        'photo-1487958449943-2429e8be8625',
-        'Dettaglio geometrico della struttura dopo il recupero',
+        'photo-1449824913935-59a10b8d2000',
+        'Il contesto urbano in cui si inserisce l’ex opificio',
         'gallery',
       ),
     ],

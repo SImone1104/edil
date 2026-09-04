@@ -70,6 +70,13 @@ export const CATEGORY_ORDER: readonly ProjectCategory[] = [
   'opere-esterne',
 ];
 
+/** Ordine con cui gli stati compaiono nei filtri. */
+export const STATUS_ORDER: readonly ProjectStatus[] = [
+  'in-corso',
+  'completato',
+  'in-progettazione',
+];
+
 /* -------------------------------------------------------------------------- */
 /* Formattatori                                                               */
 /* -------------------------------------------------------------------------- */
