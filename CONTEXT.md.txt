@@ -1,0 +1,108 @@
+Riprendo un progetto già avviato. Prima di qualsiasi altra cosa, leggi il
+repository in C:\Users\Simone\Desktop\edil e scrivi un file context.md nella
+radice del progetto che riassuma stato, decisioni e lavoro rimanente.
+
+CONTESTO CHE NON PUOI DEDURRE DAL CODICE
+
+Chi sono: vengo da Angular, non ho mai usato React prima di questo progetto.
+Nelle spiegazioni fammi il paragone con l'equivalente Angular quando aiuta, e
+non dare per scontati i concetti React di base (props, children, hook, il fatto
+che un componente sia una funzione rieseguita).
+
+Cos'è: sito vetrina DEMO, a scopo di studio e portfolio, per un'impresa edile
+italiana inventata — "Ferrante Costruzioni", Monza, dal 1978. Costruzioni
+civili, ristrutturazioni di pregio, restauro conservativo. Tutti i contenuti
+(nomi, committenti, importi, certificazioni) sono fittizi ma verosimili.
+
+Vincoli decisi e non negoziabili salvo mia indicazione contraria:
+- Nessun backend. Niente form di contatto: solo recapiti diretti tel:/mailto:.
+- TypeScript rigoroso: nessun `any` in tutto il progetto.
+- React Server Component come default; 'use client' solo dove serve davvero
+  interattività, e sul componente più piccolo possibile.
+- next/image ovunque, con sizes espliciti.
+- Immagini da Unsplash via URL remoti (niente asset locali), video drone
+  servito localmente da public/video/.
+- Commenti in italiano, e solo dove la logica non è ovvia: devono spiegare il
+  PERCHÉ, non ripetere il cosa.
+- Animazioni sobrie, mai vistose. prefers-reduced-motion sempre rispettato.
+
+Come voglio che lavori:
+- Verifica prima di affermare. Non dire che qualcosa funziona senza averlo
+  provato: compila, apri le pagine, misura. In questa sessione questo ha
+  fatto emergere difetti reali che il solo "compila" non avrebbe mostrato.
+- Procedi modulo per modulo, con codice completo, mai frammenti con
+  "// aggiungi qui il resto".
+- Se sbaglio io o se una tua scelta precedente era sbagliata, dillo e correggi.
+
+DECISIONI ARCHITETTURALI PRESE, CON IL LORO PERCHÉ
+
+- content/ separato da lib/: i contenuti sono file TypeScript letti a build
+  time; passando a un CMS si riscrive solo lib/content-access.ts e nessun
+  componente cambia firma.
+- Slug come unioni chiuse di stringhe letterali (ProjectSlug, ServiceSlug),
+  non `string`: un collegamento errato fra cantiere e servizio è un errore di
+  compilazione, non un link rotto scoperto in produzione.
+- Etichette in lib/taxonomy.ts con `satisfies Record<Tipo, string>`: se si
+  aggiunge un valore a un'unione senza l'etichetta, non compila.
+- I filtri dell'archivio sono <Link> verso query string diverse, NON useState:
+  URL condivisibile, tasto Indietro gratis, zero JavaScript. Questo rende
+  /progetti l'unica rotta dinamica del sito; tutte le altre sono statiche o
+  prerenderizzate.
+- components/ui/reveal.tsx è l'UNICA isola Framer Motion: le sezioni restano
+  Server Component e passano il markup come children.
+- Il menu mobile è montato su document.body con createPortal: l'header ha
+  backdrop-blur quando scrollato, e un backdrop-filter su un antenato crea un
+  blocco contenitore per i figli fixed. Non spostarlo dentro l'header.
+- Le pagine interne aprono con una fascia antracite perché l'header è fixed e
+  trasparente in cima: su fondo chiaro il menu sarebbe illeggibile.
+- Token `cemento` per testo su fondo SCURO (8,2:1), token `pietra` per testo
+  su fondo CHIARO (4,85:1). Non scambiarli: `cemento` sul chiaro rende 2,1:1
+  e viola WCAG AA.
+- Utility .h-hero* dichiarano vh e poi svh: su iOS 100vh è la finestra con le
+  barre nascoste e il contenuto sfora.
+- Utility .pt-sotto-header* sommano env(safe-area-inset-top) alla spaziatura,
+  perché su iPhone l'header è più alto.
+
+COSA È GIÀ FATTO
+
+Nove commit sul branch feat/strato-dati-e-media (master ha solo lo scaffold).
+Leggi `git log master..HEAD` per la cronologia ragionata: i messaggi di commit
+spiegano il perché di ogni scelta, usali come fonte.
+
+Tutte le rotte esistono e rispondono: home, /servizi, /servizi/[slug],
+/progetti (con filtri), /progetti/[slug], /chi-siamo, /contatti, 404, error,
+loading, sitemap.xml, robots.txt, JSON-LD, favicon.
+
+DEBITO NOTO, DA NON RISCOPRIRE
+
+1. Il video hero desktop pesa 12 MB, va compresso sotto i 3-4 MB. La versione
+   mobile è 2,4 MB.
+2. Il poster dell'hero non è un fotogramma reale del video: serve ffmpeg, che
+   su questa macchina non è installato. Il comando è nei commenti di
+   content/company.ts.
+3. Su iPhone in verticale il video viene ingrandito circa 6 volte per via del
+   ritaglio object-cover su uno schermo alto e stretto: la qualità è scarsa.
+   La soluzione vera è un montaggio verticale 9:16 dedicato.
+4. Manca il focus trap in lightbox e menu mobile: hanno aria-modal, Esc e
+   blocco dello scroll, ma con Tab si esce dal pannello.
+5. I bordi `cemento` su fondo chiaro rendono 2,2:1, sotto i 3:1 del criterio
+   WCAG 1.4.11. Lasciato di proposito: lo stato dei filtri è comunicato anche
+   da riempimento e testo.
+6. /progetti è dinamica, quindi serve un host Node: il sito non è esportabile
+   come HTML statico puro.
+7. Rimasto in sospeso e MAI VERIFICATO SU DISPOSITIVO REALE: su iPhone
+   compariva una banda bianca attorno al notch. L'ho affrontata impostando
+   lo sfondo di <html> ad antracite e aggiungendo viewport-fit=cover, ma
+   l'ultima verifica non è stata fatta perché Safari serviva HTML dalla cache.
+   Va riprovato con un URL con query di cache-busting o in scheda privata.
+   Se il bianco persiste, il problema è ancora aperto.
+
+COSA DEVI FARE ORA
+
+Leggi il repository e `git log master..HEAD`, verifica che quanto sopra
+corrisponda ancora al codice, e scrivi context.md con: stack e versioni,
+mappa delle cartelle con il ruolo di ciascuna, elenco delle rotte con il loro
+tipo di rendering (statica / SSG / dinamica), le decisioni architetturali con
+il perché, i design token con i rapporti di contrasto, il debito noto, e i
+comandi per avviare il progetto. Segnala qualsiasi discrepanza fra questo
+riassunto e ciò che trovi: fidati del codice, non di me.
