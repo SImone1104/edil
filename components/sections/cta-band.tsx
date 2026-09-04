@@ -29,8 +29,8 @@ export function CtaBand() {
 
             {/* Nessun form: senza backend, i recapiti diretti convertono di più
                 di un modulo che finisce in un servizio di terze parti. */}
-            <Reveal delay={0.12}>
-              <div className="flex flex-col gap-4">
+            <Reveal delay={0.12} className="w-full lg:w-auto">
+              <div className="flex w-full flex-col gap-4">
                 <a
                   href={`tel:${siteConfig.contacts.phoneHref}`}
                   className="group flex items-center gap-4 border border-cemento px-7 py-5 transition-colors duration-300 hover:border-antracite hover:bg-antracite"
@@ -57,9 +57,9 @@ export function CtaBand() {
                     strokeWidth={1.5}
                     aria-hidden
                   />
-                  <span>
+                  <span className="min-w-0">
                     <span className="block text-xs text-cemento">Email</span>
-                    <span className="block font-display text-lg font-medium tracking-tight text-antracite transition-colors group-hover:text-calce">
+                    <span className="block break-all font-display text-base font-medium tracking-tight text-antracite transition-colors group-hover:text-calce sm:text-lg">
                       {siteConfig.contacts.email}
                     </span>
                   </span>

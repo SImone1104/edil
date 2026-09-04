@@ -42,6 +42,9 @@ type ProjectFiltersProps = {
 function chipClass(isActive: boolean): string {
   return cn(
     'inline-flex items-center border px-4 py-2 text-xs font-medium transition-colors duration-300',
+    // Nella fila che scorre in orizzontale le pastiglie non devono comprimersi
+    // né spezzare il testo su due righe.
+    'shrink-0 snap-start whitespace-nowrap',
     isActive
       ? 'border-antracite bg-antracite text-calce'
       : 'border-cemento/70 text-ardesia hover:border-antracite hover:text-antracite',
@@ -54,9 +57,16 @@ export function ProjectFilters({ filters, resultCount }: ProjectFiltersProps) {
   return (
     <div className="border-b border-cemento/40 pb-10">
       <div className="flex flex-wrap items-start gap-x-12 gap-y-8">
-        <div>
+        {/* `min-w-0` permette a questa colonna di restringersi: senza, la fila
+            di pastiglie che scorre in orizzontale allargherebbe la pagina. */}
+        <div className="min-w-0 max-w-full">
           <p className="eyebrow mb-4 text-cemento">Tipo di intervento</p>
-          <div className="flex flex-wrap gap-2">
+          {/* Su mobile le pastiglie scorrono in orizzontale invece di
+              impilarsi: nove filtri incolonnati spingerebbero i risultati
+              fuori dalla prima schermata. Da sm in su tornano ad andare a capo.
+              `-mx-6 px-6` fa arrivare lo scorrimento fino al bordo dello
+              schermo, invece di lasciare un margine morto ai lati. */}
+          <div className="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
             <Link
               href={buildFilterHref(filters, { category: null })}
               className={chipClass(filters.category === undefined)}
@@ -83,9 +93,9 @@ export function ProjectFilters({ filters, resultCount }: ProjectFiltersProps) {
           </div>
         </div>
 
-        <div>
+        <div className="min-w-0 max-w-full">
           <p className="eyebrow mb-4 text-cemento">Stato</p>
-          <div className="flex flex-wrap gap-2">
+          <div className="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
             <Link
               href={buildFilterHref(filters, { status: null })}
               className={chipClass(filters.status === undefined)}

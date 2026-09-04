@@ -52,7 +52,7 @@ export function SiteFooter() {
               </a>
               <a
                 href={`mailto:${siteConfig.contacts.email}`}
-                className="block transition-colors duration-300 hover:text-calce"
+                className="block break-all transition-colors duration-300 hover:text-calce"
               >
                 {siteConfig.contacts.email}
               </a>

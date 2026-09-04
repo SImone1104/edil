@@ -65,8 +65,13 @@ export default function ContattiPage() {
       <Section tone="bianco">
         <Container size="wide">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-            {/* Recapiti */}
-            <div>
+            {/* Recapiti.
+                `min-w-0`: una colonna di griglia ha per default
+                `min-width: auto`, cioè non si restringe sotto la larghezza del
+                proprio contenuto. Con dentro un'email lunga e non spezzabile,
+                la colonna allarga la pagina e provoca lo scorrimento
+                orizzontale. È la causa più frequente di overflow su mobile. */}
+            <div className="min-w-0">
               <Reveal>
                 <p className="eyebrow mb-8 text-cemento">Recapiti diretti</p>
               </Reveal>
@@ -103,7 +108,10 @@ export default function ContattiPage() {
                     />
                     <span className="min-w-0">
                       <span className="block text-xs text-cemento">Email</span>
-                      <span className="block truncate font-display text-xl font-medium tracking-tight text-antracite transition-colors group-hover:text-calce">
+                      {/* `break-all` invece di `truncate`: un indirizzo email
+                          troncato con i puntini è inutile: meglio mandarlo a
+                          capo, anche a costo di spezzarlo. */}
+                      <span className="block break-all font-display text-lg font-medium tracking-tight text-antracite transition-colors group-hover:text-calce sm:text-xl">
                         {contacts.email}
                       </span>
                     </span>
@@ -172,7 +180,7 @@ export default function ContattiPage() {
             </div>
 
             {/* Cosa succede dopo */}
-            <div>
+            <div className="min-w-0">
               <Reveal delay={0.08}>
                 <p className="eyebrow mb-8 text-cemento">Come procediamo</p>
               </Reveal>
@@ -203,7 +211,7 @@ export default function ContattiPage() {
                     Per gare d’appalto e richieste di qualificazione scriva a{' '}
                     <a
                       href={`mailto:${contacts.email}`}
-                      className="font-medium text-ruggine underline underline-offset-4 transition-colors hover:text-antracite"
+                      className="font-medium break-all text-ruggine underline underline-offset-4 transition-colors hover:text-antracite"
                     >
                       {contacts.email}
                     </a>{' '}
